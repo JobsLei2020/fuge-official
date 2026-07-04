@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富葛 Fuge - 懂生活 选富葛 | Live Well, Choose Fuge</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo_g.png">
+    <meta name="description" content="富葛是一种鲜食葛根品种... Fuge is a fresh-edible kudzu variety with pure white color, fine fiber, soft texture, and naturally sweet taste.">
+    <meta name="keywords" content="富葛,Fuge,鲜食葛根,fresh kudzu,重庆富葛实业有限公司,Chongqing Fourgen Kudzu">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    
+    <style>
+        :root {
+            --brand-green: #DFFF00;
+            --brand-green-dark: #c8e600;
+            --title-color: #1a1a1a;
+            --body-color: #555;
+            --smoke-bg: #f5f5f0;
+            --border-color: #e8e8e0;
+            --font-main: 'Poppins', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); color: var(--body-color); background: #fff; overflow-x: hidden; }
+        .bg-theme-green { background-color: var(--brand-green) !important; color: #1a1a1a !important; }
+        .bg-theme { background-color: var(--brand-green) !important; }
+        .bg-smoke { background-color: var(--smoke-bg) !important; }
+        .bg-title { background-color: #1a1a1a !important; }
+        .sec-title { font-size: 2.5rem; font-weight: 800; color: var(--title-color); letter-spacing: -0.5px; }
+        .sec-title.text-white { color: #fff !important; }
+        .space { padding: 100px 0; }
+        .space-bottom { padding-bottom: 100px; }
+
+        /* Header */
+        .nav-header { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid var(--border-color); transition: all 0.3s ease; }
+        .nav-header .header-logo img { height: 60px; }
+        .nav-header .main-menu ul { list-style: none; display: flex; gap: 0; margin: 0; padding: 0; }
+        .nav-header .main-menu ul > li { position: relative; }
+        .nav-header .main-menu ul > li > a { display: block; padding: 30px 18px; font-size: 0.85rem; font-weight: 500; color: #444; text-decoration: none; transition: color 0.3s; }
+        .nav-header .main-menu ul > li > a:hover, .nav-header .main-menu ul > li.active > a { color: #000; }
+        .link-effect { position: relative; display: inline-block; overflow: hidden; line-height: 1.2; }
+        .link-effect .effect-1 { display: block; transition: transform 0.3s ease; }
+        .link-effect .effect-1:last-child { position: absolute; top: 0; left: 0; transform: translateY(100%); }
+        a:hover .link-effect .effect-1:first-child { transform: translateY(-100%); }
+        a:hover .link-effect .effect-1:last-child { transform: translateY(0); }
+        .main-menu .sub-menu { position: absolute; top: 100%; left: 0; background: #fff; min-width: 200px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; list-style: none; padding: 10px 0; border-radius: 8px; z-index: 100; }
+        .main-menu li:hover > .sub-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .main-menu .sub-menu li a { display: block; padding: 8px 25px; font-size: 0.85rem; color: #555; text-decoration: none; transition: all 0.3s; }
+        .main-menu .sub-menu li a:hover { color: #000; background: #f9f9f5; padding-left: 30px; }
+        .header-button .btn { padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; text-decoration: none; display: inline-block; transition: opacity 0.3s; }
+        .header-button .btn:hover { opacity: 0.85; }
+        .menu-toggle { background: none; border: none; cursor: pointer; padding: 10px; }
+        .menu-toggle .line { display: block; width: 24px; height: 2px; background: #333; margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
+
+        /* Mobile Menu */
+        .mobile-menu-wrapper { position: fixed; top: 0; left: -320px; width: 300px; height: 100vh; background: #fff; z-index: 2000; transition: left 0.4s ease; box-shadow: 2px 0 30px rgba(0,0,0,0.1); overflow-y: auto; padding: 30px 25px; }
+        .mobile-menu-wrapper.open { left: 0; }
+        .mobile-menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1999; opacity: 0; visibility: hidden; transition: all 0.3s; }
+        .mobile-menu-overlay.open { opacity: 1; visibility: visible; }
+        .mobile-menu-wrapper .menu-toggle { position: absolute; top: 15px; right: 15px; }
+        .mobile-menu-wrapper .menu-toggle i { font-size: 1.5rem; color: #333; }
+        .mobile-menu-wrapper .mobile-logo { margin-bottom: 25px; }
+        .mobile-menu-wrapper .mobile-logo img { height: 45px; }
+        .mobile-menu ul { list-style: none; padding: 0; }
+        .mobile-menu ul li { border-bottom: 1px solid #f0f0f0; }
+        .mobile-menu ul li a { display: block; padding: 12px 0; color: #333; text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .mobile-menu ul li .sub-menu { display: none; padding-left: 15px; }
+        .mobile-menu ul li .sub-menu li { border-bottom: none; }
+        .mobile-menu ul li .sub-menu li a { font-size: 0.85rem; font-weight: 400; padding: 8px 0; color: #666; }
+        .mobile-menu ul li.has-children > a::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; float: right; font-size: 0.7rem; transition: transform 0.3s; }
+        .mobile-menu ul li.has-children.open > a::after { transform: rotate(180deg); }
+
+        /* Hero */
+        .hero-wrapper { padding: 30px 0; }
+        .hero-wrapper img { border-radius: 12px; width: 100%; }
+
+        /* About Section */
+        .why-area-1 { position: relative; background-color: var(--brand-green); overflow: hidden; }
+        .why-area-1 .why-img-1-1 { position: absolute; right: 0; top: -100px; bottom: 140px; width: 45%; }
+        .why-area-1 .why-img-1-1 img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .why-area-1 p { font-size: 0.9rem; line-height: 1.8; color: rgba(0,0,0,0.7); }
+        .why-area-1 h4 { font-weight: 700; color: var(--title-color); margin-bottom: 20px; }
+
+        /* Feature Cards */
+        .feature-card { background: #fafaf8; padding: 40px 30px; border-radius: 12px; transition: all 0.3s ease; border: 1px solid transparent; height: 100%; }
+        .feature-card:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.06); border-color: var(--border-color); }
+        .feature-card-icon { margin-bottom: 20px; text-align: center; }
+        .feature-card-icon img { height: 50px; }
+        .feature-card-title { font-size: 1.1rem; font-weight: 700; text-align: center; margin-bottom: 15px; }
+        .feature-card-title a { color: var(--title-color); text-decoration: none; }
+        .feature-card-text { font-size: 0.85rem; color: #888; line-height: 1.7; margin-bottom: 20px; }
+        .link-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: var(--title-color); text-decoration: none; }
+        .link-btn:hover { color: #000; }
+        .link-btn img { height: 14px; transition: transform 0.3s; }
+        .link-btn:hover img { transform: translate(4px, -4px); }
+
+        /* Product Cards */
+        .product-card { background: #fff; border-radius: 16px; overflow: hidden; transition: all 0.4s ease; border: 1px solid #f0f0f0; height: 100%; }
+        .product-card:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.08); transform: translateY(-4px); border-color: var(--brand-green); }
+        .product-card .product-img { width: 100%; height: 280px; object-fit: cover; transition: transform 0.6s ease; }
+        .product-card:hover .product-img { transform: scale(1.05); }
+        .product-card .product-body { padding: 24px; }
+        .product-card .product-tag { display: inline-block; background: var(--brand-green); color: #1a1a1a; font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+        .product-card .product-name { font-size: 1.15rem; font-weight: 700; color: var(--title-color); margin-bottom: 8px; }
+        .product-card .product-desc { font-size: 0.82rem; color: #888; line-height: 1.6; margin-bottom: 12px; }
+        .product-card .product-price { font-size: 1.1rem; font-weight: 700; color: var(--title-color); }
+        .product-card .product-spec { font-size: 0.75rem; color: #aaa; }
+        
+        /* Variety Comparison Table */
+        .compare-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.04); }
+        .compare-table th { background: #1a1a1a; color: #fff; padding: 16px 20px; font-size: 0.85rem; font-weight: 600; text-align: center; }
+        .compare-table th:first-child { text-align: left; }
+        .compare-table td { padding: 14px 20px; font-size: 0.85rem; color: #555; text-align: center; border-bottom: 1px solid #f0f0f0; }
+        .compare-table td:first-child { text-align: left; font-weight: 600; color: var(--title-color); }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table .highlight-row { background: rgba(223,255,0,0.12); }
+        .compare-table .highlight-row td:first-child { color: #000; }
+        .compare-badge { display: inline-block; background: var(--brand-green); color: #1a1a1a; font-size: 0.7rem; font-weight: 700; padding: 2px 10px; border-radius: 20px; }
+
+        /* Certification Badges */
+        .cert-card { text-align: center; padding: 24px 18px; background: #fff; border-radius: 12px; border: 1px solid #f0f0f0; transition: all 0.3s; height: 100%; }
+        .cert-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .cert-card h5 { font-size: 0.95rem; font-weight: 600; color: var(--title-color); margin-bottom: 5px; }
+        .cert-card p { font-size: 0.75rem; color: #999; }
+
+        /* Supply Chain Steps */
+        .chain-step { text-align: center; padding: 30px 20px; }
+        .chain-step .step-icon { width: 80px; height: 80px; margin: 0 auto 20px; border-radius: 50%; background: var(--brand-green); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+        .chain-step h5 { font-size: 1rem; font-weight: 700; color: var(--title-color); margin-bottom: 10px; }
+        .chain-step p { font-size: 0.82rem; color: #888; line-height: 1.6; }
+
+        /* Portfolio / Products Slider */
+        .portfolio-slider .slick-list { padding: 0 100px !important; }
+        .portfolio-slider .slick-slide { padding: 0 10px; }
+        .portfolio-wrap { display: block; position: relative; border-radius: 12px; overflow: hidden; text-decoration: none; }
+        .portfolio-wrap .portfolio-thumb img { width: 100%; height: 350px; object-fit: cover; transition: transform 0.6s ease; }
+        .portfolio-wrap:hover .portfolio-thumb img { transform: scale(1.08); }
+        .portfolio-details { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; }
+        .portfolio-details .portfolio-title { font-size: 1.3rem; font-weight: 700; margin: 0; }
+        .slick-dots { bottom: -40px; }
+        .slick-dots li button:before { font-size: 10px; color: #ccc; }
+        .slick-dots li.slick-active button:before { color: var(--brand-green-dark); }
+
+        /* Blog Cards */
+        .blog-card { background: #fff; border-radius: 12px; overflow: hidden; transition: all 0.3s ease; height: 100%; }
+        .blog-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+        .blog-card .blog-img { overflow: hidden; border-radius: 12px; margin-bottom: 20px; }
+        .blog-card .blog-img img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.5s ease; }
+        .blog-card:hover .blog-img img { transform: scale(1.08); }
+        .blog-card .blog-content { padding: 0 5px; }
+        .blog-card .blog-meta { display: flex; gap: 12px; font-size: 0.75rem; margin-bottom: 10px; }
+        .blog-card .blog-meta a { color: #999; text-decoration: none; }
+        .blog-card .blog-meta a:last-child { border: 1px solid #ddd; padding: 2px 8px; border-radius: 3px; font-size: 0.65rem; }
+        .blog-card .blog-title { font-size: 0.9rem; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+        .blog-card .blog-title a { color: var(--title-color); text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .blog-card .blog-title a:hover { color: var(--brand-green-dark); }
+
+        /* CTA */
+        .cta-area-1 .circle-btn { display: inline-flex; align-items: center; justify-content: center; width: 140px; height: 140px; border-radius: 50%; font-weight: 700; font-size: 1rem; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 0 30px rgba(223,255,0,0.25); }
+        .cta-area-1 .circle-btn:hover { transform: scale(1.08); box-shadow: 0 0 50px rgba(223,255,0,0.4); }
+
+        /* Footer */
+        .footer-wrapper { padding-top: 60px; }
+        .footer-menu-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 30px; padding: 0; margin: 0; }
+        .footer-menu-list li a { color: #666; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .footer-menu-list li a:hover { color: #000; }
+        .copyright-wrap { padding: 25px 0; border-top: 1px solid var(--border-color); }
+        .copyright-text { font-size: 0.85rem; color: #888; }
+        .copyright-text a { color: #555; text-decoration: none; }
+        .social-btn a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #eee; color: #555; text-decoration: none; font-size: 1.1rem; transition: all 0.3s; }
+        .social-btn a:hover { background: var(--brand-green); color: #000; }
+
+        /* Scroll to Top */
+        .scroll-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; cursor: pointer; z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s; }
+        .scroll-top.show { opacity: 1; visibility: visible; }
+        .scroll-top svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .scroll-top svg path { fill: none; stroke: var(--brand-green-dark); stroke-width: 4; stroke-linecap: round; }
+        .scroll-top::after { content: '\f062'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1rem; color: #333; }
+        
+        /* Section subtitle */
+        .section-subtitle { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #aaa; margin-bottom: 5px; }
+
+        /* Responsive */
+        @media (max-width: 1199px) { .why-area-1 .why-img-1-1 { width: 40%; } }
+        @media (max-width: 991px) {
+            .sec-title { font-size: 2rem; }
+            .space { padding: 70px 0; }
+            .why-area-1 .why-img-1-1 { position: relative; width: 100%; top: 0; bottom: 0; margin-top: 30px; }
+            .why-area-1 .why-img-1-1 img { height: 300px; }
+            .portfolio-slider .slick-list { padding: 0 40px !important; }
+            .portfolio-wrap .portfolio-thumb img { height: 280px; }
+            .cta-area-1 .circle-btn { width: 110px; height: 110px; font-size: 0.85rem; }
+        }
+        @media (max-width: 767px) {
+            .sec-title { font-size: 1.6rem; }
+            .space { padding: 50px 0; }
+            .portfolio-slider .slick-list { padding: 0 20px !important; }
+            .portfolio-wrap .portfolio-thumb img { height: 220px; }
+            .nav-header .header-logo img { height: 45px; }
+            .scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+            .product-card .product-img { height: 200px; }
+        }
+    
+        /* Bilingual */
+        .lang-en { display: block; font-size: 0.85rem; color: #444; font-weight: 500; margin-top: 2px; letter-spacing: 0.2px; }
+        .cert-card .lang-en { font-size: 0.75rem; }
+        .chain-step .lang-en { font-size: 0.8rem; }
+        .feature-card-text .lang-en { font-size: 0.8rem; }
+        .product-name .lang-en { font-size: 0.8rem; color: #555; font-weight: 500; }
+        .product-desc .lang-en { font-size: 0.82rem; }
+        .blog-title .lang-en { font-size: 0.82rem; font-weight: 500; }
+        .sec-title .lang-en { font-size: 0.9rem; font-weight: 500; color: #555; letter-spacing: 0; }
+        .compare-table td .lang-en { font-size: 0.8rem; color: #555; }
+        .compare-table th .lang-en { font-size: 0.75rem; font-weight: 400; color: rgba(255,255,255,0.85); }
+
+    </style>
+</head>
+<body>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobileOverlay"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-wrapper" id="mobileMenu">
+    <button class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button>
+    <div class="mobile-logo"><a href="/"><img src="assets/logo_g.png" alt="富葛实业"></a></div>
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="/">首页 <span class="lang-en">Home</span></a></li>
+            <li class="has-children" onclick="toggleSub(this)"><a href="#">关于我们 <span class="lang-en">About Us</span></a><ul class="sub-menu"><li><a href="#">企业简介 <span class="lang-en">Company Profile</span></a></li><li><a href="#">发展理念 <span class="lang-en">Philosophy</span></a></li><li><a href="#">发展历程 <span class="lang-en">Milestones</span></a></li></ul></li>
+            <li class="has-children" onclick="toggleSub(this)"><a href="#">关于富葛 <span class="lang-en">About Fuge</span></a><ul class="sub-menu"><li><a href="#">品种介绍 <span class="lang-en">Variety Info</span></a></li><li><a href="#">葛根百科 <span class="lang-en">Kudzu Encyclopedia</span></a></li></ul></li>
+            <li class="has-children" onclick="toggleSub(this)"><a href="#">种植体系 <span class="lang-en">Farming System</span></a><ul class="sub-menu"><li><a href="#">特质农品产区 <span class="lang-en">Special Ag. Zones</span></a></li><li><a href="#">绿色食品产区 <span class="lang-en">Green Food Zones</span></a></li><li><a href="#">源产地分布 <span class="lang-en">Origin Map</span></a></li></ul></li>
+            <li class="has-children" onclick="toggleSub(this)"><a href="#">产品展示 <span class="lang-en">Products</span></a><ul class="sub-menu"><li><a href="#">主要产品 <span class="lang-en">Main Products</span></a></li><li><a href="#">在线商城 <span class="lang-en">Online Store</span></a></li></ul></li>
+            <li class="has-children" onclick="toggleSub(this)"><a href="#">新闻中心 <span class="lang-en">News</span></a><ul class="sub-menu"><li><a href="#">企业新闻 <span class="lang-en">Company News</span></a></li><li><a href="#">媒体聚焦 <span class="lang-en">Media Focus</span></a></li></ul></li>
+            <li class="has-children" onclick="toggleSub(this)"><a href="#">联系我们 <span class="lang-en">Contact Us</span></a><ul class="sub-menu"><li><a href="#">种植合作 <span class="lang-en">Farming Partnership</span></a></li><li><a href="#">代理招商 <span class="lang-en">Distribution Inquiry</span></a></li><li><a href="#">招聘信息 <span class="lang-en">Careers</span></a></li></ul></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="nav-header">
+    <div class="menu-area">
+        <div class="container-fluid px-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto">
+                    <div class="header-logo"><a href="/"><img src="assets/logo_g.png" alt="富葛实业"></a></div>
+                </div>
+                <div class="col-auto ms-auto">
+                    <nav class="main-menu d-none d-lg-inline-block">
+                        <ul>
+                            <li class="active"><a href="/"><span class="link-effect"><span class="effect-1">首页 | Home</span><span class="effect-1">首页 | Home</span></span></a></li>
+                            <li class="menu-item-has-children"><a href="#about"><span class="link-effect"><span class="effect-1">关于我们 | About Us</span><span class="effect-1">关于我们 | About Us</span></span></a>
+                                <ul class="sub-menu"><li><a href="#">企业简介</a></li><li><a href="#">发展理念</a></li><li><a href="#">发展历程</a></li></ul>
+                            </li>
+                            <li class="menu-item-has-children"><a href="#variety"><span class="link-effect"><span class="effect-1">关于富葛 | About Fuge</span><span class="effect-1">关于富葛 | About Fuge</span></span></a>
+                                <ul class="sub-menu"><li><a href="#">品种介绍</a></li><li><a href="#">葛根百科</a></li></ul>
+                            </li>
+                            <li class="menu-item-has-children"><a href="#farming"><span class="link-effect"><span class="effect-1">种植体系 | Farming</span><span class="effect-1">种植体系 | Farming</span></span></a>
+                                <ul class="sub-menu"><li><a href="#">特质农品产区</a></li><li><a href="#">绿色食品产区</a></li><li><a href="#">源产地分布</a></li></ul>
+                            </li>
+                            <li class="menu-item-has-children"><a href="#products"><span class="link-effect"><span class="effect-1">产品展示 | Products</span><span class="effect-1">产品展示 | Products</span></span></a>
+                                <ul class="sub-menu"><li><a href="#">主要产品</a></li><li><a href="#">在线商城</a></li></ul>
+                            </li>
+                            <li class="menu-item-has-children"><a href="#news"><span class="link-effect"><span class="effect-1">新闻中心 | News</span><span class="effect-1">新闻中心 | News</span></span></a>
+                                <ul class="sub-menu"><li><a href="#">企业新闻</a></li><li><a href="#">媒体聚焦</a></li></ul>
+                            </li>
+                            <li class="menu-item-has-children"><a href="#contact"><span class="link-effect"><span class="effect-1">联系我们 | Contact</span><span class="effect-1">联系我们 | Contact</span></span></a>
+                                <ul class="sub-menu"><li><a href="#">种植合作</a></li><li><a href="#">代理招商</a></li><li><a href="#">招聘信息</a></li></ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="navbar-right d-inline-flex d-lg-none">
+                        <button type="button" class="menu-toggle sidebar-btn" onclick="toggleMobileMenu()">
+                            <span class="line"></span><span class="line"></span><span class="line"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <div class="header-button">
+                        <a href="#" class="btn bg-theme-green">
+                            <span class="link-effect"><span class="effect-1"><i class="fab fa-shopify"></i> 在线商城 | Online Store</span><span class="effect-1"><i class="fab fa-shopify"></i> 在线商城 | Online Store</span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Banner -->
+<div class="hero-wrapper hero-3" id="hero">
+    <div class="container">
+        <div class="hero-style3">
+            <div class="row"><div class="col-lg-12">
+                <img class="w-100" src="assets/hero-bg.jpg" alt="富葛基地">
+            </div></div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== 品种优势（替代原占位内容） ===== -->
+<div class="counter-area-1 space overflow-hidden" id="variety">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+                <div class="title-area text-center mb-5">
+                    <p class="section-subtitle">FUGE | 富葛鲜食葛根</p>
+                    <h2 class="sec-title">懂生活 选富葛 <small class="lang-en">Live Well, Choose Fuge</small></h2>
+                    <p class="text-muted mt-3" style="font-size:0.95rem;">"富葛"的独特基因，成就卓尔不群的葛根产品——十斤鲜葛出一斤富葛鲜片<br><span class="lang-en" style="margin-top:5px;color:#555;">The unique genetics of Fuge create an exceptional kudzu product — 10 lbs of fresh kudzu yields 1 lb of Fuge fresh slices.</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Comparison Table -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>对比维度 <span class="lang-en">Comparison</span></th>
+                            <th>富葛（鲜食葛根）<br><span class="lang-en">Fuge (Fresh Kudzu)</span></th>
+                            <th>柴葛根 <span class="lang-en">Wild Kudzu</span></th>
+                            <th>粉葛根 <span class="lang-en">Starch Kudzu</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight-row">
+                            <td>可食用部分 <span class="lang-en">Edible Portion</span></td>
+                            <td><strong>98%</strong> <span class="compare-badge">优 Best</span></td>
+                            <td>5%</td>
+                            <td>20%-30%</td>
+                        </tr>
+                        <tr>
+                            <td>食用方法 <span class="lang-en">Consumption</span></td>
+                            <td><strong>一种蔬菜（直接食用）</strong><br><span class="lang-en">A Vegetable (Eat Directly)</span></td>
+                            <td>中药材及提取物 <span class="lang-en">Herbal Medicine &amp; Extracts</span></td>
+                            <td>制作葛根粉 <span class="lang-en">Kudzu Starch Making</span></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>葛根素含量<br><small>（每100g干品）<br><span class="lang-en">Puerarin (per 100g dry)</span></small></td>
+                            <td><strong>&gt;400mg（合格品）</strong></td>
+                            <td>&gt;2500mg（入药标准）<br><span class="lang-en">Pharmaceutical grade</span></td>
+                            <td>&gt;8mg（优等品葛粉）<br><span class="lang-en">Premium starch</span></td>
+                        </tr>
+                        <tr>
+                            <td>实际营养吸收比例 <span class="lang-en">Nutrient Absorption Rate</span></td>
+                            <td><strong>99%</strong> <span class="compare-badge">优 Best</span></td>
+                            <td>&lt;10%</td>
+                            <td>20%-30%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Key Highlights -->
+        <div class="row gy-4 mt-4">
+            <div class="col-md-3 col-6">
+                <div class="text-center p-4">
+                    <div class="display-4 fw-black text-dark mb-2">98%</div>
+                    <p class="text-muted small mb-0">可食用部分<br><span class="lang-en">Edible Portion</span></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="text-center p-4">
+                    <div class="display-4 fw-black text-dark mb-2">99%</div>
+                    <p class="text-muted small mb-0">营养吸收比例<br><span class="lang-en">Absorption Rate</span></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="text-center p-4">
+                    <div class="display-4 fw-black text-dark mb-2">10:1</div>
+                    <p class="text-muted small mb-0">十斤鲜葛出一斤片<br><span class="lang-en">10:1 Fresh-to-Sliced</span></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="text-center p-4">
+                    <div class="display-4 fw-black text-dark mb-2">A级</div>
+                    <p class="text-muted small mb-0">国家绿色食品认证<br><span class="lang-en">Green Food Certified</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== 关于我们 ===== -->
+<div class="why-area-1 space" id="about">
+    <div class="why-img-1-1"><img src="assets/why.jpg" alt="富葛基地"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <p class="section-subtitle" style="color:rgba(0,0,0,0.4);">ABOUT US</p>
+                <h2 class="sec-title">关于我们 <small class="lang-en">About Us</small></h2>
+                <h4>懂生活，选富葛 <span class="lang-en">Live Well, Choose Fuge</span></h4>
+                <p>重庆富葛实业有限公司成立于2016年3月，注册资本为人民币壹仟万元。葛根是国家卫生健康委公布的"药食同源"植物，既有很好的营养价值，又有很强的保健功效。公司是专业从事葛根育种栽培、产品研发、加工销售的科技创新型农业企业，致力于为广大消费者提供生态、天然、绿色、健康、营养的葛根系列产品，成为生态绿色农产品名牌企业，产品已获得国家绿色食品A级认证。</p>
+                <p class="mb-n1">Chongqing Fourgen Kudzu Industrial Co., Ltd was established in March 2016 with registered capital of RMB 10 million. Company is a professional agricultural enterprises of science and technology, engaged in Pueraria breeding, cultivation, product research and development, processing and sales of innovative, is committed to provide customers the ecological, natural, green, health, nutrition, Pueraria series products, becoming ecological green agricultural products brand enterprises. Company products have been awarded national ministry of green food certification.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== 品质认证 ===== -->
+<div class="space bg-smoke">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+                <div class="title-area text-center mb-5">
+                    <p class="section-subtitle">CERTIFICATION</p>
+                    <h2 class="sec-title">品质认证 <small class="lang-en">Certification</small></h2>
+                    <p class="text-muted mt-2" style="font-size:0.9rem;">好品质，有凭证 <span class="lang-en">Quality, Certified</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4 justify-content-center">
+            <div class="col-md-4 col-6">
+                <div class="cert-card">
+                    <h5>重庆名牌农产品<br><span class="lang-en">Chongqing Famous Ag. Product</span></h5>
+                    <p>重庆市农业农村委员会认定<br><span class="lang-en">Certified by Chongqing Agri. Comm.</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-6">
+                <div class="cert-card">
+                    <h5>全国特质农品<br><span class="lang-en">National Special Ag. Product</span></h5>
+                    <p>国家级特色农产品认证<br><span class="lang-en">National Specialty Product Cert.</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-6">
+                <div class="cert-card">
+                    <h5>国家绿色食品A级认证<br><span class="lang-en">National Green Food Grade A</span></h5>
+                    <p>绿色食品最高等级认证<br><span class="lang-en">Highest Green Food Certification</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-6">
+                <div class="cert-card">
+                    <h5>全国绿色食品博览会金奖<br><span class="lang-en">National Green Food Expo Gold</span></h5>
+                    <p>行业最高荣誉之一<br><span class="lang-en">Top Industry Honor</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-6">
+                <div class="cert-card">
+                    <h5>最受欢迎农产品奖<br><span class="lang-en">Most Popular Ag. Product Award</span></h5>
+                    <p>中国国际农产品博览会<br><span class="lang-en">China Intl. Ag. Products Expo</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-6">
+                <div class="cert-card">
+                    <h5>最佳火锅伴侣<br><span class="lang-en">Best Hotpot Companion</span></h5>
+                    <p>中国饭店行业协会评选<br><span class="lang-en">China Hotel Assoc. Award</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-6">
+                <div class="cert-card">
+                    <h5>重庆市地方标准起草单位<br><span class="lang-en">Chongqing Local Std. Drafter</span></h5>
+                    <p>行业标准制定者<br><span class="lang-en">Industry Standard Setter</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-6">
+                <div class="cert-card">
+                    <h5>标准化种植示范区<br><span class="lang-en">Standardized Demo Farm</span></h5>
+                    <p>重庆市富葛标准化种植示范区<br><span class="lang-en">Fuge Standardized Demo Farm</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== 全程自控 ===== -->
+<div class="space">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+                <div class="title-area text-center mb-5">
+                    <p class="section-subtitle">INTEGRATED CHAIN</p>
+                    <h2 class="sec-title">全程自控 品质保障 <small class="lang-en">Full Chain, Total Quality</small></h2>
+                    <p class="text-muted mt-2" style="font-size:0.9rem;">从育种到加工，全程自有可控<br><span class="lang-en">From breeding to processing — fully under our control</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4">
+            <div class="col-md-3 col-6">
+                <div class="chain-step">
+                    <div class="step-icon"><i class="fas fa-seedling"></i></div>
+                    <h5>自有品种 · 自育种苗<br><span class="lang-en">Own Variety · Self Bred</span></h5>
+                    <p>西南大学与富葛实业共同培育鲜食葛根品种，确保品种特性持续稳定性<br><span class="lang-en">Southwest Univ. &amp; Fuge jointly cultivate fresh kudzu varieties</span></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="chain-step">
+                    <div class="step-icon"><i class="fas fa-tractor"></i></div>
+                    <h5>自有基地 + 订单基地<br><span class="lang-en">Own Farms + Contract Farms</span></h5>
+                    <p>自建标准化种植示范区1000亩，大足区域6000余亩，全国订单基地4万余亩<br><span class="lang-en">1,000 mu own farms, 6,000+ mu regional, 40,000+ mu nationwide</span></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="chain-step">
+                    <div class="step-icon"><i class="fas fa-industry"></i></div>
+                    <h5>自有加工厂<br><span class="lang-en">Own Processing Facility</span></h5>
+                    <p>-196℃超低温瞬冻锁鲜技术，15分钟锁住新鲜营养和水分<br><span class="lang-en">-196&deg;C flash freezing locks in freshness in 15 minutes</span></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="chain-step">
+                    <div class="step-icon"><i class="fas fa-flask"></i></div>
+                    <h5>西南大学技术支撑<br><span class="lang-en">SW Univ. Technical Support</span></h5>
+                    <p>育种育苗、产品研发、食品加工与质量控制全方位技术支持<br><span class="lang-en">Breeding, R&amp;D, processing &amp; QC support</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== 富葛种植体系 ===== -->
+<div class="feature-area-1 space bg-smoke" id="farming">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8">
+                <div class="title-area text-center mb-5">
+                    <p class="section-subtitle">FARMING SYSTEM</p>
+                    <h2 class="sec-title">富葛种植体系 <small class="lang-en">Fuge Farming System</small></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4 justify-content-center">
+            <div class="col-xxl-5 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-card-icon"><img src="assets/icon1.svg" alt="icon"></div>
+                    <h4 class="feature-card-title"><a href="#">品种介绍 <span class="lang-en">Variety Info</span></a></h4>
+                    <p class="feature-card-text">富葛鲜食葛根，色泽洁白、纤维细腻、绵软化渣、味道清甜。与西南大学共同培育，推动农药"零"使用。<br><span class="lang-en">Fuge fresh kudzu — pure white, fine fiber, soft texture, naturally sweet. Zero-pesticide farming.</span></p>
+                    <div style="text-align:center;"><a href="#" class="link-btn"><span class="link-effect"><span class="effect-1">了解详情 | Learn More</span><span class="effect-1">了解详情 | Learn More</span></span><img src="assets/arrow.svg" alt="icon"></a></div>
+                </div>
+            </div>
+            <div class="col-xxl-5 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-card-icon"><img src="assets/icon2.svg" alt="icon"></div>
+                    <h4 class="feature-card-title"><a href="#">特质农品产区</a></h4>
+                    <p class="feature-card-text">精选全国优质产区、绿色种植的鲜食葛根富葛为原料，原料产地严格管控。<br><span class="lang-en">Premium growing regions with strict raw material quality control.</span></p>
+                    <div style="text-align:center;"><a href="#" class="link-btn"><span class="link-effect"><span class="effect-1">了解详情 | Learn More</span><span class="effect-1">了解详情 | Learn More</span></span><img src="assets/arrow.svg" alt="icon"></a></div>
+                </div>
+            </div>
+            <div class="col-xxl-5 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-card-icon"><img src="assets/icon3.svg" alt="icon"></div>
+                    <h4 class="feature-card-title"><a href="#">绿色食品产区</a></h4>
+                    <p class="feature-card-text">实施年份筛选与分级制度，产品获国家绿色食品A级认证，确保品质溯源。<br><span class="lang-en">Year-based grading system. Green Food Grade A certified, fully traceable.</span></p>
+                    <div style="text-align:center;"><a href="#" class="link-btn"><span class="link-effect"><span class="effect-1">了解详情 | Learn More</span><span class="effect-1">了解详情 | Learn More</span></span><img src="assets/arrow.svg" alt="icon"></a></div>
+                </div>
+            </div>
+            <div class="col-xxl-5 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-card-icon"><img src="assets/icon4.svg" alt="icon"></div>
+                    <h4 class="feature-card-title"><a href="#">源产地分布</a></h4>
+                    <p class="feature-card-text">自建重庆大足示范区1000亩，区域种植6000余亩，全国订单种植基地4万余亩。<br><span class="lang-en">1,000 mu in Dazu, 6,000+ mu regional, 40,000+ mu nationwide.</span></p>
+                    <div style="text-align:center;"><a href="#" class="link-btn"><span class="link-effect"><span class="effect-1">了解详情 | Learn More</span><span class="effect-1">了解详情 | Learn More</span></span><img src="assets/arrow.svg" alt="icon"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== 产品展示（基于产品手册的实际产品） ===== -->
+<div class="space" id="products">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+                <div class="title-area text-center mb-5">
+                    <p class="section-subtitle">PRODUCTS</p>
+                    <h2 class="sec-title">产品展示 <small class="lang-en">Our Products</small></h2>
+                    <p class="text-muted mt-2" style="font-size:0.9rem;">品质 | 传承 | 创新 <span class="lang-en">Quality | Heritage | Innovation</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Grid -->
+        <div class="row g-4">
+            <!-- Product 1: 富葛鲜片 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <div class="overflow-hidden"><img class="product-img" src="assets/products/slide5_图片 33.jpg" alt="富葛鲜片"></div>
+                    <div class="product-body">
+                        <span class="product-tag"><i class="fas fa-star me-1"></i>明星产品 Star Product</span>
+                        <h3 class="product-name">富葛鲜片 <span class="lang-en">Fuge Fresh Slices</span></h3>
+                        <p class="product-desc">选十斤以上富葛，去皮去两头，整形切片，精选制成。十斤鲜葛出一斤富葛鲜片。-196℃超低温瞬冻锁鲜。<br><span class="lang-en">Selected 10+ lb Fuge kudzu, peeled, trimmed and sliced. 10 lbs yields 1 lb of Fuge fresh slices. -196&deg;C flash frozen.</span></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><span class="product-price">¥30</span> <span class="product-spec">/ 100g袋</span></div>
+                            <a href="#" class="link-btn">了解详情 <img src="assets/arrow.svg" alt="→"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2: 膳食纤维粉 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <div class="overflow-hidden"><img class="product-img" src="assets/products/slide6_图片 15.png" alt="富葛膳食纤维粉"></div>
+                    <div class="product-body">
+                        <span class="product-tag">特色产品 Specialty</span>
+                        <h3 class="product-name">富葛膳食纤维粉 <span class="lang-en">Dietary Fiber Powder</span></h3>
+                        <p class="product-desc">非传统葛根粉，膳食纤维76%NVD/100g，葛根素&gt;450mg/100g。冷水亦可冲调，宴前解酒、清畅护肠、调节三高。<br><span class="lang-en">76% dietary fiber NVD/100g, puerarin &gt;450mg/100g. Mixes with cold water. Great for digestion &amp; wellness.</span></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><span class="product-price">¥298</span> <span class="product-spec">/ 60g盒</span></div>
+                            <a href="#" class="link-btn">了解详情 <img src="assets/arrow.svg" alt="→"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3: 富葛香十年典藏 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <div class="overflow-hidden"><img class="product-img" src="assets/products/slide7_Image 36.jpg" alt="富葛香十年典藏"></div>
+                    <div class="product-body">
+                        <span class="product-tag">高端礼盒 Premium Gift</span>
+                        <h3 class="product-name">富葛香 · 十年典藏款 <span class="lang-en">Fuge Aroma &middot; 10-Year Reserve</span></h3>
+                        <p class="product-desc">二十多道严苛工序精制而成，充分保留葛根活性成分和独特香气。药食同源，高端养生首选。<br><span class="lang-en">20+ rigorous processes preserve active compounds and unique aroma. Premium wellness choice.</span></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><span class="product-price">¥4,998</span> <span class="product-spec">/ 8g*18罐</span></div>
+                            <a href="#" class="link-btn">了解详情 <img src="assets/arrow.svg" alt="→"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4: 富葛香产地茶 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <div class="overflow-hidden"><img class="product-img" src="assets/products/slide8_图片 11.png" alt="富葛香葛根红茶"></div>
+                    <div class="product-body">
+                        <span class="product-tag">茶系列 Tea Series</span>
+                        <h3 class="product-name">富葛香 · 年份产地茶 <span class="lang-en">Fuge Aroma &middot; Vintage Tea</span></h3>
+                        <p class="product-desc">精选大足、北碚缙云山、云南昌宁三地核心基地原料，五焙五陈工艺。大足/云南/缙云山三款可选。<br><span class="lang-en">Three origins: Dazu, Jinyun Mt., Yunnan. Five-roast, five-age process. Three regional options.</span></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><span class="product-price">¥1,898</span> <span class="product-spec">/ 5g*20袋</span></div>
+                            <a href="#" class="link-btn">了解详情 <img src="assets/arrow.svg" alt="→"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 5: 富葛香养生茶 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <div class="overflow-hidden"><img class="product-img" src="assets/products/slide9_图片 32.png" alt="富葛香养生茶"></div>
+                    <div class="product-body">
+                        <span class="product-tag">养生茶 Wellness Tea</span>
+                        <h3 class="product-name">富葛香 · 葛根红茶养生茶 <span class="lang-en">Fuge Aroma &middot; Kudzu Black Tea</span></h3>
+                        <p class="product-desc">采自缙云山脉富葛原香茶复配古树红茶，三焙三陈工艺，持久留香。日常养生饮用，有益血管健康。<br><span class="lang-en">Fuge aroma tea from Jinyun Mt. blended with ancient tree black tea. Supports vascular health.</span></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><span class="product-price">¥420</span> <span class="product-spec">/ 5g*28袋</span></div>
+                            <a href="#" class="link-btn">了解详情 <img src="assets/arrow.svg" alt="→"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 6: 富葛鲜浆面 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <div class="overflow-hidden"><img class="product-img" src="assets/products/slide11_图片 7.png" alt="富葛鲜浆面"></div>
+                    <div class="product-body">
+                        <span class="product-tag">日常主食 Daily Staple</span>
+                        <h3 class="product-name">富葛鲜浆面 <span class="lang-en">Fresh Kudzu Noodles</span></h3>
+                        <p class="product-desc">鲜葛全浆入面，鲜浆添加量高达30%。富含膳食纤维，快煮2分钟即熟，口感弹滑爽口。<br><span class="lang-en">30% fresh kudzu pulp in noodles. Rich in fiber. Ready in 2 minutes. Smooth &amp; springy.</span></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><span class="product-price">¥8</span> <span class="product-spec">/ 200g盒</span></div>
+                            <a href="#" class="link-btn">了解详情 <img src="assets/arrow.svg" alt="→"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== 产品展示（轮播画廊 - 保留原样） ===== -->
+<div class="portfolio-area-1 overflow-hidden" style="padding-bottom: 80px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8">
+                <div class="title-area text-center mb-5">
+                    <p class="section-subtitle">GALLERY</p>
+                    <h2 class="sec-title">产品画廊 <small class="lang-en">Product Gallery</small></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0">
+        <div class="row global-carousel portfolio-slider">
+            <div class="col-lg-4"><a href="#" class="portfolio-wrap style2"><div class="portfolio-thumb"><img src="assets/products/slide5_图片 33.jpg" alt="富葛鲜片"></div><div class="portfolio-details"><h3 class="portfolio-title">富葛鲜片</h3></div></a></div>
+            <div class="col-lg-4"><a href="#" class="portfolio-wrap style2"><div class="portfolio-thumb"><img src="assets/products/slide5_图片 40.jpg" alt="富葛鲜片烹饪"></div><div class="portfolio-details"><h3 class="portfolio-title">富葛鲜片 · 烹饪</h3></div></a></div>
+            <div class="col-lg-4"><a href="#" class="portfolio-wrap style2"><div class="portfolio-thumb"><img src="assets/products/slide6_图片 15.png" alt="膳食纤维粉"></div><div class="portfolio-details"><h3 class="portfolio-title">富葛膳食纤维粉</h3></div></a></div>
+            <div class="col-lg-4"><a href="#" class="portfolio-wrap style2"><div class="portfolio-thumb"><img src="assets/products/slide8_图片 11.png" alt="富葛香茶"></div><div class="portfolio-details"><h3 class="portfolio-title">富葛香 · 年份产地茶</h3></div></a></div>
+            <div class="col-lg-4"><a href="#" class="portfolio-wrap style2"><div class="portfolio-thumb"><img src="assets/products/slide11_图片 7.png" alt="富葛鲜浆面"></div><div class="portfolio-details"><h3 class="portfolio-title">富葛鲜浆面</h3></div></a></div>
+            <div class="col-lg-4"><a href="#" class="portfolio-wrap style2"><div class="portfolio-thumb"><img src="assets/products/slide5_图片 41.jpg" alt="富葛鲜片清蒸"></div><div class="portfolio-details"><h3 class="portfolio-title">富葛鲜片 · 清蒸</h3></div></a></div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== 新闻中心 ===== -->
+<section class="blog-area space bg-smoke" id="news" style="padding-top: 80px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-7 col-xl-6 col-lg-8">
+                <div class="title-area text-center mb-5">
+                    <p class="section-subtitle">NEWS</p>
+                    <h2 class="sec-title">新闻中心 <small class="lang-en">News</small></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-40 justify-content-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="blog-card">
+                    <div class="blog-img"><a href="#"><img src="assets/news/news-3.jpg" alt="award"></a></div>
+                    <div class="blog-content">
+                        <div class="blog-meta"><a href="#">2024-10-04</a><a href="#">媒体聚焦</a></div>
+                        <h4 class="blog-title"><a href="#">富葛鲜片获中国饭店行业协会"最佳火锅伴侣"称号<br><span class="lang-en">Fuge Fresh Slices Awarded Best Hotpot Companion</span></a></h4>
+                        <a href="#" class="link-btn"><span class="link-effect"><span class="effect-1">查看详情</span><span class="effect-1">查看详情</span></span><img src="assets/arrow.svg" alt="icon"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="blog-card">
+                    <div class="blog-img"><a href="#"><img src="assets/news/news-1.jpg" alt="farm field"></a></div>
+                    <div class="blog-content">
+                        <div class="blog-meta"><a href="#">2024-10-03</a><a href="#">媒体聚焦</a></div>
+                        <h4 class="blog-title"><a href="#">富葛实业获评"重庆名牌农产品" 好品质再获认可<br><span class="lang-en">Fuge Named Chongqing Famous Agricultural Product</span></a></h4>
+                        <a href="#" class="link-btn"><span class="link-effect"><span class="effect-1">查看详情</span><span class="effect-1">查看详情</span></span><img src="assets/arrow.svg" alt="icon"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="blog-card">
+                    <div class="blog-img"><a href="#"><img src="assets/news/news-4.jpg" alt="food processing"></a></div>
+                    <div class="blog-content">
+                        <div class="blog-meta"><a href="#">2024-10-03</a><a href="#">企业新闻</a></div>
+                        <h4 class="blog-title"><a href="#">西南大学与富葛实业深化合作，共育鲜食葛根新品种<br><span class="lang-en">SW Univ. &amp; Fuge Deepen Cooperation on New Varieties</span></a></h4>
+                        <a href="#" class="link-btn"><span class="link-effect"><span class="effect-1">查看详情</span><span class="effect-1">查看详情</span></span><img src="assets/arrow.svg" alt="icon"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="blog-card">
+                    <div class="blog-img"><a href="#"><img src="assets/news/news-2.jpg" alt="tea product"></a></div>
+                    <div class="blog-content">
+                        <div class="blog-meta"><a href="#">2024-10-02</a><a href="#">企业新闻</a></div>
+                        <h4 class="blog-title"><a href="#">富葛香系列葛根茶新品上市，传承药食同源千年智慧<br><span class="lang-en">Fuge Aroma Tea Launched — Millennia of Medicine-Food Wisdom</span></a></h4>
+                        <a href="#" class="link-btn"><span class="link-effect"><span class="effect-1">查看详情</span><span class="effect-1">查看详情</span></span><img src="assets/arrow.svg" alt="icon"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<div class="cta-area-1 overflow-hidden bg-title space text-xl-start text-center" id="contact">
+    <div class="container">
+        <div class="row justify-content-xl-between justify-content-center align-items-center">
+            <div class="col-xl-8 col-lg-10">
+                <div class="title-area mb-xl-0 mb-60">
+                    <p class="section-subtitle" style="color:rgba(255,255,255,0.3);">COOPERATION</p>
+                    <h2 class="sec-title text-white">种植合作 · 代理招商 <small class="lang-en" style="color:rgba(255,255,255,0.85);font-size:0.8rem;">Farming Partnership &amp; Distribution</small></h2>
+                    <p class="text-white-50 mt-3" style="font-size:1.1rem;">我们期待与您合作共赢!<br><span class="lang-en" style="color:rgba(255,255,255,0.8);font-size:0.85rem;">We look forward to partnering with you!</span></p>
+                </div>
+            </div>
+            <div class="col-xl-auto">
+                <a class="circle-btn btn bg-theme text-title gsap-magnetic" href="#">
+                    <span class="link-effect"><span class="effect-1">联系我们 | Contact</span><span class="effect-1">联系我们 | Contact</span></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="footer-wrapper footer-layout3 overflow-hidden bg-smoke">
+    <div class="container">
+        <div class="footer-menu-area">
+            <div class="row gy-3 justify-content-between">
+                <div class="col-xxl-6 col-lg-7">
+                    <ul class="footer-menu-list">
+                        <li><a href="#"><span class="link-effect"><span class="effect-1">企业简介 | Company</span><span class="effect-1">企业简介 | Company</span></span></a></li>
+                        <li><a href="#"><span class="link-effect"><span class="effect-1">品种介绍 | Variety</span><span class="effect-1">品种介绍 | Variety</span></span></a></li>
+                        <li><a href="#"><span class="link-effect"><span class="effect-1">种植体系 | Farming</span><span class="effect-1">种植体系 | Farming</span></span></a></li>
+                        <li><a href="#"><span class="link-effect"><span class="effect-1">产品展示 | Products</span><span class="effect-1">产品展示 | Products</span></span></a></li>
+                    </ul>
+                </div>
+                <div class="col-xxl-6 col-lg-5 text-lg-end">
+                    <ul class="footer-menu-list">
+                        <li><a href="#"><span class="link-effect"><span class="effect-1">隐私保护 | Privacy</span><span class="effect-1">隐私保护 | Privacy</span></span></a></li>
+                        <li><a href="#"><span class="link-effect"><span class="effect-1">联系我们 | Contact</span><span class="effect-1">联系我们 | Contact</span></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-wrap">
+        <div class="container">
+            <div class="row gy-3 justify-content-between align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="social-btn"><a href="#"><span class="link-effect"><span class="effect-1"><i class="fab fa-weixin"></i></span><span class="effect-1"><i class="fab fa-weixin"></i></span></span></a></div>
+                        <div class="small text-muted">
+                            <div>重庆大足区智凤街道(富葛园)<br><span class="lang-en">Fuge Garden, Zhifeng Subdistrict, Dazu, Chongqing</span></div>
+                            <div><a href="tel:02366869999" style="color:#888;text-decoration:none;">+86 023-66869999</a> · <a href="mailto:gegn@gegn.cn" style="color:#888;text-decoration:none;">gegn@gegn.cn</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 align-self-center text-md-end">
+                    <p class="copyright-text">Copyright &copy; 2024 <a href="#">重庆富葛实业有限公司 <span class="lang-en">Chongqing Fourgen Kudzu Industrial Co., Ltd.</span></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll To Top -->
+<div class="scroll-top show" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" id="scrollPath" style="stroke-dasharray:307.919;stroke-dashoffset:307.919;"></path>
+    </svg>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); document.getElementById('mobileOverlay').classList.toggle('open'); }
+document.getElementById('mobileOverlay').addEventListener('click', toggleMobileMenu);
+function toggleSub(el) { el.classList.toggle('open'); var sub = el.querySelector('.sub-menu'); if (sub) sub.style.display = sub.style.display === 'block' ? 'none' : 'block'; }
+
+$(document).ready(function() {
+    $('.portfolio-slider').slick({
+        dots: true, arrows: false, infinite: true, speed: 500,
+        slidesToShow: 3, slidesToScroll: 1, centerMode: true, centerPadding: '200px',
+        responsive: [
+            { breakpoint: 1399, settings: { slidesToShow: 2, centerPadding: '100px' } },
+            { breakpoint: 991, settings: { slidesToShow: 1, centerPadding: '80px' } },
+            { breakpoint: 575, settings: { slidesToShow: 1, centerPadding: '30px' } }
+        ]
+    });
+});
+
+// Scroll to Top
+var scrollPath = document.getElementById('scrollPath');
+var pathLength = scrollPath.getTotalLength();
+scrollPath.style.strokeDasharray = pathLength;
+window.addEventListener('scroll', function() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    scrollPath.style.strokeDashoffset = pathLength - (scrollTop / docHeight) * pathLength;
+    document.getElementById('scrollTop').classList.toggle('show', scrollTop > 300);
+});
+
+// Sticky Header
+var header = document.querySelector('.nav-header');
+window.addEventListener('scroll', function() {
+    header.style.boxShadow = window.scrollY > 150 ? '0 4px 20px rgba(0,0,0,0.05)' : 'none';
+});
+
+// Smooth Scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+</script>
+
+</body>
+</html>
